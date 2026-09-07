@@ -1,4 +1,13 @@
-# Kerstens Media & Presentatie — V4
-Upload alle bestanden uit deze map naar de hoofdmap van je bestaande GitHub repository en kies Commit changes.
-De foto's, video en audio staan bewust in dezelfde hoofdmap als index.html, passend bij je huidige GitHub-opzet.
-Vercel publiceert daarna automatisch.
+# Kerstens Media & Presentatie – compleet pakket
+
+Dit pakket is gecontroleerd: alle lokale verwijzingen in index.html bestaan daadwerkelijk.
+
+Upload ALLE bestanden uit deze map tegelijk naar de hoofdmap van je GitHub-repository.
+De video is al gecomprimeerd tot onder de limiet van 25 MB.
+
+Na Commit changes zal Vercel automatisch opnieuw deployen.
+
+Belangrijk:
+- verwijder of vervang de oude index.html en style.css
+- zorg dat alle media exact deze bestandsnamen behouden
+- alle bestanden staan in de hoofdmap; er is geen images-map nodig
