@@ -779,3 +779,8 @@ footer {
 .proof-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
 .proof-strip span{border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:700}
 @media(max-width:900px){.content-grid{grid-template-columns:1fr}}
+
+.voiceover-demos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:100%}
+.voiceover-card audio{width:100%;margin-top:18px}
+.mc-highlights{margin-top:18px;letter-spacing:.08em;font-size:.92rem;line-height:1.6;color:#d8b77c!important}
+@media(max-width:900px){.voiceover-demos{grid-template-columns:1fr}}

@@ -1,22 +1,29 @@
-UPLOAD NAAR GITHUB (repository root)
+VERSIE 2 — CONTENT ONDER DE JUISTE DIENSTPAGINA'S
+
+Upload alle bestanden uit deze map naar de root van GitHub.
 
 Vervang:
 - index.html
 - style.css
+- voice-over.html
+- mc.html
+- presentator.html
+- dagvoorzitter.html
+- over-ad.html
+- contact.html
 - sitemap.xml
 - robots.txt
 
-Voeg nieuw toe:
-- presentator.html
-- dagvoorzitter.html
-- voice-over.html
-- mc.html
-- over-ad.html
-- contact.html
+Laat de bestaande media in GitHub staan:
+- voiceover-reclame.mp3
+- voiceover-documentaire.mp3
+- voiceover-boodschap.mp3
+- mc-live-1.jpeg
+- mc-live-2.jpeg
+- mc-live-3.jpeg
+- overige foto's en logo
 
-Laat bestaande afbeeldingen, logo en MP3-bestanden staan.
-
-Na Vercel deployment:
-1. Controleer de homepage en iedere nieuwe pagina.
-2. Search Console > Sitemaps: sitemap.xml opnieuw indienen indien nodig.
-3. Vraag via URL-inspectie indexering aan voor de belangrijkste nieuwe pagina's.
+Wijzigingen:
+- De drie echte voice-over spelers staan nu op voice-over.html.
+- De uitgebreide 'Energie op het podium'-tekst, grote festivalnamen en livefoto's staan nu op mc.html.
+- De homepage geeft alleen een korte introductie en linkt door naar de juiste dienstpagina's.
