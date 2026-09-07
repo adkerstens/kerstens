@@ -516,3 +516,91 @@ footer {
     text-align: center;
   }
 }
+
+
+/* --- Versie 2: echte huisstijl, logo en foto's --- */
+
+.brand {
+  max-width: 260px;
+}
+
+.brand-logo {
+  display: block;
+  width: 220px;
+  max-height: 64px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.hero-photo-wrap,
+.about-photo-wrap {
+  border-radius: 28px;
+  overflow: hidden;
+  background: #050505;
+  box-shadow: 0 24px 70px rgba(0,0,0,.14);
+}
+
+.hero-photo {
+  display: block;
+  width: 100%;
+  min-height: 540px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.about-photo {
+  display: block;
+  width: 100%;
+  min-height: 620px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.service-card-image {
+  padding: 0;
+  overflow: hidden;
+}
+
+.service-photo {
+  display: block;
+  width: 100%;
+  height: 185px;
+  object-fit: cover;
+  object-position: center 28%;
+  background: #000;
+}
+
+.service-card-content {
+  padding: 24px 28px 28px;
+}
+
+.service-card-image .service-number {
+  margin-bottom: 22px;
+}
+
+@media (max-width: 900px) {
+  .brand-logo {
+    width: 185px;
+  }
+
+  .hero-photo,
+  .about-photo {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 620px) {
+  .brand-logo {
+    width: 165px;
+  }
+
+  .hero-photo {
+    min-height: 360px;
+  }
+
+  .about-photo {
+    min-height: 400px;
+  }
+}
