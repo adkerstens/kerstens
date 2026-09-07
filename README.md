@@ -1,14 +1,4 @@
-# Kerstens Presentatie & Media — versie 2
-
-Deze versie bevat:
-- het echte Kerstens-logo
-- professionele foto bovenaan
-- tweede foto bij 'Over Ad'
-- aparte MC-foto in de MC-sectie
-- bijgewerkt contactadres
-
-## Uploaden naar GitHub
-Upload de volledige inhoud van deze map naar de bestaande repository.
-Overschrijf `index.html` en `style.css` en upload de map `images`.
-
-Vercel publiceert daarna automatisch de nieuwe versie.
+# Kerstens Media & Presentatie — V4
+Upload alle bestanden uit deze map naar de hoofdmap van je bestaande GitHub repository en kies Commit changes.
+De foto's, video en audio staan bewust in dezelfde hoofdmap als index.html, passend bij je huidige GitHub-opzet.
+Vercel publiceert daarna automatisch.
