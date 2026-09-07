@@ -1,15 +1,22 @@
-SEO-update voor Kerstens Media & Presentatie
+UPLOAD NAAR GITHUB (repository root)
 
-Upload deze drie bestanden naar de ROOT van je GitHub-repository:
-- index.html          (bestaande index.html vervangen)
-- robots.txt          (nieuw)
-- sitemap.xml         (nieuw)
+Vervang:
+- index.html
+- style.css
+- sitemap.xml
+- robots.txt
 
-Vercel publiceert daarna automatisch.
+Voeg nieuw toe:
+- presentator.html
+- dagvoorzitter.html
+- voice-over.html
+- mc.html
+- over-ad.html
+- contact.html
 
-Daarna in Google Search Console:
-1. Voeg https://www.kerstensmediaenpresentatie.nl toe als URL-prefix property
-   of voeg kerstensmediaenpresentatie.nl toe als Domain property.
-2. Verifieer het domein.
-3. Dien sitemap.xml in.
-4. Gebruik URL-inspectie voor de homepage en vraag indexering aan.
+Laat bestaande afbeeldingen, logo en MP3-bestanden staan.
+
+Na Vercel deployment:
+1. Controleer de homepage en iedere nieuwe pagina.
+2. Search Console > Sitemaps: sitemap.xml opnieuw indienen indien nodig.
+3. Vraag via URL-inspectie indexering aan voor de belangrijkste nieuwe pagina's.

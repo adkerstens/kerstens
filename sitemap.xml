@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.kerstensmediaenpresentatie.nl/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://www.kerstensmediaenpresentatie.nl/</loc></url>
+  <url><loc>https://www.kerstensmediaenpresentatie.nl/presentator.html</loc></url>
+  <url><loc>https://www.kerstensmediaenpresentatie.nl/dagvoorzitter.html</loc></url>
+  <url><loc>https://www.kerstensmediaenpresentatie.nl/voice-over.html</loc></url>
+  <url><loc>https://www.kerstensmediaenpresentatie.nl/mc.html</loc></url>
+  <url><loc>https://www.kerstensmediaenpresentatie.nl/over-ad.html</loc></url>
+  <url><loc>https://www.kerstensmediaenpresentatie.nl/contact.html</loc></url>
 </urlset>
