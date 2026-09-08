@@ -784,3 +784,77 @@ footer {
 .voiceover-card audio{width:100%;margin-top:18px}
 .mc-highlights{margin-top:18px;letter-spacing:.08em;font-size:.92rem;line-height:1.6;color:#d8b77c!important}
 @media(max-width:900px){.voiceover-demos{grid-template-columns:1fr}}
+
+
+
+/* --- Header update: logo prominenter en beter leesbaar --- */
+.site-header .nav-wrap {
+  min-height: 118px;
+}
+
+.site-header .brand {
+  flex: 0 0 auto;
+  max-width: 360px;
+}
+
+.site-header .brand-logo {
+  width: 330px;
+  max-width: 100%;
+  max-height: 102px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.site-header .main-nav {
+  gap: 22px;
+}
+
+@media (max-width: 1100px) {
+  .site-header .nav-wrap {
+    min-height: 104px;
+  }
+
+  .site-header .brand {
+    max-width: 290px;
+  }
+
+  .site-header .brand-logo {
+    width: 270px;
+    max-height: 88px;
+  }
+
+  .site-header .main-nav {
+    gap: 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-header .nav-wrap {
+    min-height: 98px;
+  }
+
+  .site-header .brand {
+    max-width: 280px;
+  }
+
+  .site-header .brand-logo {
+    width: 255px;
+    max-height: 84px;
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header .nav-wrap {
+    min-height: 90px;
+  }
+
+  .site-header .brand {
+    max-width: calc(100vw - 48px);
+  }
+
+  .site-header .brand-logo {
+    width: 225px;
+    max-height: 76px;
+  }
+}
