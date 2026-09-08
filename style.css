@@ -786,75 +786,73 @@ footer {
 @media(max-width:900px){.voiceover-demos{grid-template-columns:1fr}}
 
 
-
-/* --- Header update: logo prominenter en beter leesbaar --- */
+/* LOGO / HEADER – extra groot en breed. Rest van de site blijft gelijk. */
 .site-header .nav-wrap {
-  min-height: 118px;
+  width: min(1380px, calc(100% - 40px));
+  min-height: 142px;
+  gap: 34px;
 }
-
 .site-header .brand {
-  flex: 0 0 auto;
-  max-width: 360px;
+  flex: 0 0 470px;
+  width: 470px;
+  max-width: 470px;
 }
-
 .site-header .brand-logo {
-  width: 330px;
+  display: block;
+  width: 460px;
   max-width: 100%;
-  max-height: 102px;
+  height: auto;
+  max-height: 124px;
   object-fit: contain;
   object-position: left center;
 }
-
 .site-header .main-nav {
+  flex: 1 1 auto;
+  justify-content: flex-end;
   gap: 22px;
 }
-
-@media (max-width: 1100px) {
-  .site-header .nav-wrap {
-    min-height: 104px;
-  }
-
+@media (max-width: 1250px) {
+  .site-header .nav-wrap { min-height: 124px; }
   .site-header .brand {
-    max-width: 290px;
+    flex-basis: 390px;
+    width: 390px;
+    max-width: 390px;
   }
-
   .site-header .brand-logo {
-    width: 270px;
-    max-height: 88px;
+    width: 380px;
+    max-height: 108px;
   }
-
   .site-header .main-nav {
-    gap: 16px;
+    gap: 15px;
     font-size: 13px;
   }
 }
-
 @media (max-width: 900px) {
   .site-header .nav-wrap {
-    min-height: 98px;
+    min-height: 118px;
+    justify-content: flex-start;
   }
-
   .site-header .brand {
-    max-width: 280px;
+    flex: 0 1 420px;
+    width: min(420px, 100%);
+    max-width: 100%;
   }
-
   .site-header .brand-logo {
-    width: 255px;
-    max-height: 84px;
+    width: min(410px, 100%);
+    max-height: 102px;
   }
 }
-
 @media (max-width: 620px) {
   .site-header .nav-wrap {
-    min-height: 90px;
+    width: min(100% - 28px, 1180px);
+    min-height: 104px;
   }
-
   .site-header .brand {
-    max-width: calc(100vw - 48px);
+    width: 100%;
+    max-width: 100%;
   }
-
   .site-header .brand-logo {
-    width: 225px;
-    max-height: 76px;
+    width: min(360px, 100%);
+    max-height: 90px;
   }
 }
