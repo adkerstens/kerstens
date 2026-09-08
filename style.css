@@ -787,79 +787,90 @@ footer {
 
 
 /* =========================================================
-   HEADER – volledig, groot en leesbaar logo
-   Alleen de header wordt aangepast; overige site blijft gelijk.
+   HEADER + LOGO — gecorrigeerd voor logo-kleur-behouden.png
+   Rest van de website blijft ongewijzigd.
    ========================================================= */
 
 .site-header .nav-wrap {
-  width: min(1380px, calc(100% - 40px));
-  min-height: 0;
-  padding-top: 18px;
-  padding-bottom: 14px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-  align-items: start;
+  width: min(1320px, calc(100% - 40px));
+  min-height: 112px;
+  gap: 28px;
 }
 
 .site-header .brand {
-  display: block;
-  width: 610px;
-  max-width: 100%;
+  display: flex;
+  align-items: center;
+  flex: 0 0 400px;
+  width: 400px;
+  max-width: 400px;
 }
 
 .site-header .brand-logo {
   display: block;
-  width: 610px;
+  width: 390px;
   max-width: 100%;
   height: auto;
   max-height: none;
   object-fit: contain;
-  object-position: left top;
+  object-position: left center;
 }
 
 .site-header .main-nav {
-  width: 100%;
-  display: flex;
+  flex: 1 1 auto;
   justify-content: flex-end;
-  gap: 26px;
-  padding-top: 2px;
-  padding-bottom: 4px;
+  gap: 20px;
 }
 
-@media (max-width: 1100px) {
-  .site-header .brand,
+/* Laptop */
+@media (max-width: 1180px) {
+  .site-header .nav-wrap {
+    min-height: 104px;
+    gap: 20px;
+  }
+
+  .site-header .brand {
+    flex-basis: 340px;
+    width: 340px;
+    max-width: 340px;
+  }
+
   .site-header .brand-logo {
-    width: 520px;
+    width: 330px;
   }
 
   .site-header .main-nav {
-    gap: 18px;
+    gap: 13px;
     font-size: 13px;
   }
 }
 
+/* Mobiel/tablet: de bestaande site verbergt hier de hoofdnav */
 @media (max-width: 900px) {
   .site-header .nav-wrap {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    min-height: 104px;
+    justify-content: flex-start;
   }
 
-  .site-header .brand,
+  .site-header .brand {
+    flex: 0 1 390px;
+    width: min(390px, 100%);
+    max-width: 100%;
+  }
+
   .site-header .brand-logo {
-    width: min(520px, 100%);
+    width: min(380px, 100%);
   }
-
-  /* bestaande mobiele regel verbergt de hoofdnav */
 }
 
 @media (max-width: 620px) {
   .site-header .nav-wrap {
-    width: min(100% - 24px, 1180px);
+    width: min(100% - 28px, 1180px);
+    min-height: 92px;
   }
 
   .site-header .brand,
   .site-header .brand-logo {
     width: 100%;
+    max-width: 100%;
   }
 }
