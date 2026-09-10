@@ -786,91 +786,38 @@ footer {
 @media(max-width:900px){.voiceover-demos{grid-template-columns:1fr}}
 
 
-/* =========================================================
-   HEADER + LOGO — gecorrigeerd voor logo-kleur-behouden.png
-   Rest van de website blijft ongewijzigd.
-   ========================================================= */
-
-.site-header .nav-wrap {
-  width: min(1320px, calc(100% - 40px));
-  min-height: 112px;
-  gap: 28px;
+/* --- MC Club X fotoreeks: drie gelijke brede kaarten --- */
+.mc-clubx-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+  width: 100%;
 }
 
-.site-header .brand {
-  display: flex;
-  align-items: center;
-  flex: 0 0 400px;
-  width: 400px;
-  max-width: 400px;
+.mc-clubx-card {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #000;
 }
 
-.site-header .brand-logo {
+.mc-clubx-card img {
   display: block;
-  width: 390px;
-  max-width: 100%;
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-  object-position: left center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
-.site-header .main-nav {
-  flex: 1 1 auto;
-  justify-content: flex-end;
-  gap: 20px;
-}
-
-/* Laptop */
-@media (max-width: 1180px) {
-  .site-header .nav-wrap {
-    min-height: 104px;
-    gap: 20px;
-  }
-
-  .site-header .brand {
-    flex-basis: 340px;
-    width: 340px;
-    max-width: 340px;
-  }
-
-  .site-header .brand-logo {
-    width: 330px;
-  }
-
-  .site-header .main-nav {
-    gap: 13px;
-    font-size: 13px;
-  }
-}
-
-/* Mobiel/tablet: de bestaande site verbergt hier de hoofdnav */
 @media (max-width: 900px) {
-  .site-header .nav-wrap {
-    min-height: 104px;
-    justify-content: flex-start;
+  .mc-clubx-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  .site-header .brand {
-    flex: 0 1 390px;
-    width: min(390px, 100%);
-    max-width: 100%;
-  }
-
-  .site-header .brand-logo {
-    width: min(380px, 100%);
-  }
-}
-
-@media (max-width: 620px) {
-  .site-header .nav-wrap {
-    width: min(100% - 28px, 1180px);
-    min-height: 92px;
-  }
-
-  .site-header .brand,
-  .site-header .brand-logo {
-    width: 100%;
-    max-width: 100%;
+  .mc-clubx-card {
+    aspect-ratio: 16 / 10;
   }
 }
