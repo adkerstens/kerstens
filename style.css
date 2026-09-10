@@ -909,3 +909,11 @@ footer {
     aspect-ratio: 16 / 9;
   }
 }
+
+
+/* Optredens / podiumervaring — langere lijst netjes leesbaar */
+.mc-highlights {
+  line-height: 1.75;
+  max-width: 100%;
+  text-wrap: balance;
+}
