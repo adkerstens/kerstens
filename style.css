@@ -917,3 +917,17 @@ footer {
   max-width: 100%;
   text-wrap: balance;
 }
+
+/* CTA contrast: keep light buttons readable in dark sections. */
+.button.secondary,
+.button.secondary:hover,
+.button.secondary:focus-visible {
+  color: var(--text);
+}
+
+.button:focus-visible,
+.nav-cta:focus-visible {
+  outline: 2px solid var(--dark);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--surface);
+}
