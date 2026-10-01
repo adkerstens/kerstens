@@ -931,3 +931,16 @@ footer {
   outline-offset: 3px;
   box-shadow: 0 0 0 3px var(--surface);
 }
+
+
+/* Dance Boulevard blog */
+.blog-article{padding-top:70px}
+.blog-article .blog-lead{font-size:21px;color:var(--text);margin-bottom:42px}
+.blog-article h2{font-size:clamp(32px,4vw,48px);margin-top:48px}
+.blog-quote{margin:48px 0;padding:24px 28px;border-left:4px solid var(--accent);background:var(--surface);font-family:"Playfair Display",serif;font-size:25px;line-height:1.35}
+.blog-cta{margin-top:64px;padding:34px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+.blog-cta h3{font-family:"Playfair Display",serif;font-size:32px;margin:8px 0 12px}
+.dance-blog-teaser{background:var(--bg)}
+.dance-blog-card{padding:30px;border-radius:20px;background:var(--surface);border:1px solid var(--line)}
+.dance-blog-card h3{font-family:"Playfair Display",serif;font-size:30px;line-height:1.15}
+@media(max-width:620px){.blog-quote{font-size:21px;margin:36px 0}.blog-cta{padding:24px}}
