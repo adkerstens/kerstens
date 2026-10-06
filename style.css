@@ -950,3 +950,6 @@ footer {
 
 .mobile-nav{display:none}
 @media(max-width:900px){.mobile-nav{display:block}.mobile-nav summary{cursor:pointer;border:1px solid var(--line);border-radius:24px;padding:8px 16px;font-weight:700}.mobile-nav nav{position:absolute;top:100%;right:20px;width:min(300px,calc(100vw - 40px));padding:12px;background:var(--bg);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px #0002;display:grid;gap:4px}.mobile-nav nav a{padding:9px 14px}.mobile-nav nav a:hover{background:var(--surface)}.mobile-nav summary:focus-visible{outline:2px solid var(--accent-dark);outline-offset:3px}}
+
+/* Headshot op de pagina Over Ad, op oorspronkelijke resolutie. */
+.ad-headshot{display:block;width:100%;max-width:440px;height:auto;border-radius:28px;margin-bottom:28px}
