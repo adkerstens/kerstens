@@ -972,3 +972,5 @@ footer{flex-wrap:wrap}footer a,.prose a,.narrow a{text-underline-offset:3px}foot
 .popular-mixes ol{margin:0;padding-left:24px}.popular-mixes li{padding:12px 0 12px 8px;border-bottom:1px solid var(--line)}
 .popular-mixes a{display:block;text-decoration:none;color:inherit}.popular-mixes a:hover strong{text-decoration:underline}
 .popular-mixes strong,.popular-mixes span{display:block}.popular-mixes span{font-size:14px;margin-top:5px}
+
+.music-embed{min-width:0}.music-embed iframe{display:block;width:100%;border:0;border-radius:12px}.music-fallback{display:block;margin-top:12px;font-size:13px;color:inherit}.soundcloud-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.popular-mixes{margin-top:44px}.popular-mixes a.music-fallback{font-size:13px;text-decoration:underline}@media(max-width:900px){.release-grid,.soundcloud-grid{grid-template-columns:1fr}.music-embed{width:100%;max-width:640px;margin-inline:auto}}
