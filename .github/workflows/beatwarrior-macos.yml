@@ -1,0 +1,65 @@
+name: Build Beatwarrior for macOS
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  macos:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    env:
+      RBXPORT_TEST: '1'
+      APPLE_SIGNING_IDENTITY: '-'
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract verified Beatwarrior source
+        run: |
+          echo 'd97ff0466c8c169d52cea502d0a3f06fd0f0b8bb86bf9b4ae38509fa27e4d6ae  beatwarrior/downloads/Beatwarrior-Broncode-1.10.0.zip' | shasum -a 256 -c -
+          unzip -q beatwarrior/downloads/Beatwarrior-Broncode-1.10.0.zip -d "$RUNNER_TEMP/source"
+          cp beatwarrior/build-macos/tauri.macos.conf.json "$RUNNER_TEMP/source/Beatwarrior-source/src-tauri/"
+          cp beatwarrior/build-macos/Build-Beatwarrior-macOS.sh "$RUNNER_TEMP/source/Beatwarrior-source/"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.17.1
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.99.0
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: ${{ runner.temp }}/source/Beatwarrior-source
+          key: beatwarrior-macos-universal
+      - name: Build universal Mac app and installer
+        working-directory: ${{ runner.temp }}/source/Beatwarrior-source
+        run: bash Build-Beatwarrior-macOS.sh
+      - name: Verify Mac package and native startup
+        working-directory: ${{ runner.temp }}/source/Beatwarrior-source
+        run: |
+          set -euo pipefail
+          app='target/universal-apple-darwin/release/bundle/macos/Beatwarrior.app'
+          binary="$app/Contents/MacOS/rbxport"
+          lipo -verify_arch arm64 x86_64 "$binary"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          test "$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$app/Contents/Info.plist")" = '1.10.0'
+          mkdir -p "$RUNNER_TEMP/native-smoke" out
+          RBXPORT_OPTIONS="$RUNNER_TEMP/native-smoke/options.json" "$binary" > out/native-startup.log 2>&1 &
+          app_pid=$!
+          trap 'kill "$app_pid" 2>/dev/null || true' EXIT
+          sleep 15
+          kill -0 "$app_pid"
+          cp target/universal-apple-darwin/release/bundle/dmg/*.dmg out/Beatwarrior-1.10.0-universal.dmg
+          hdiutil verify out/Beatwarrior-1.10.0-universal.dmg
+          shasum -a 256 out/Beatwarrior-1.10.0-universal.dmg > out/SHA256SUMS.txt
+          lipo -archs "$binary" > out/architectures.txt
+          codesign -dv "$app" 2> out/codesign.txt
+          ditto -c -k --sequesterRsrc --keepParent "$app" out/Beatwarrior-1.10.0-universal.app.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Beatwarrior-macOS-1.10.0
+          path: ${{ runner.temp }}/source/Beatwarrior-source/out/
+          if-no-files-found: error
+          retention-days: 30
