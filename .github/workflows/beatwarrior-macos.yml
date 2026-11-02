@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Extract verified Beatwarrior source
         run: |
-          echo 'f8454c398e75a46df797dabb35b692aa1122f1b4b3c6713c82365807bd6ae589  beatwarrior/downloads/Beatwarrior-Broncode-1.10.1.zip' | shasum -a 256 -c -
+          echo 'a24c7a234de1d1edecdf44ce5df7bf4b1a76e7ad30f9e592c8c821f31b1321da  beatwarrior/downloads/Beatwarrior-Broncode-1.10.1.zip' | shasum -a 256 -c -
           unzip -q beatwarrior/downloads/Beatwarrior-Broncode-1.10.1.zip -d "$RUNNER_TEMP/source"
           cp beatwarrior/build-macos/tauri.macos.conf.json "$RUNNER_TEMP/source/Beatwarrior-source/src-tauri/"
           cp beatwarrior/build-macos/Build-Beatwarrior-macOS.sh "$RUNNER_TEMP/source/Beatwarrior-source/"
