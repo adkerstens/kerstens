@@ -1,8 +1,15 @@
 name: Build Beatwarrior for macOS
 on:
   workflow_dispatch:
+    inputs:
+      recover_run:
+        description: 'Reuse the compiled recovery app from this run (blank builds normally)'
+        required: false
+        default: ''
+        type: string
 permissions:
   contents: read
+  actions: read
 jobs:
   macos:
     runs-on: macos-latest
@@ -12,6 +19,7 @@ jobs:
       APPLE_SIGNING_IDENTITY: '-'
       CI: 'true'
       CARGO_PROFILE_RELEASE_LTO: thin
+      MACOSX_DEPLOYMENT_TARGET: '13.0'
     steps:
       - uses: actions/checkout@v4
       - name: Extract verified Beatwarrior source
@@ -36,17 +44,37 @@ jobs:
           key: beatwarrior-macos-universal
           cache-on-failure: true
       - name: Build universal Mac app and installer
+        if: inputs.recover_run == ''
         working-directory: ${{ runner.temp }}/source/Beatwarrior-source
         run: bash Build-Beatwarrior-macOS.sh
+      - uses: actions/download-artifact@v4
+        if: inputs.recover_run != ''
+        with:
+          name: Beatwarrior-macOS-recovery
+          path: ${{ runner.temp }}/recovery
+          run-id: ${{ inputs.recover_run }}
+          github-token: ${{ github.token }}
+      - name: Restore compiled app and package disk image
+        if: inputs.recover_run != ''
+        working-directory: ${{ runner.temp }}/source/Beatwarrior-source
+        run: |
+          set -euo pipefail
+          bundle='target/universal-apple-darwin/release/bundle'
+          mkdir -p "$bundle/macos" "$bundle/dmg" dmg-root
+          ditto -x -k "$RUNNER_TEMP/recovery/compiled-app.zip" "$bundle/macos"
+          ditto "$bundle/macos/Beatwarrior.app" dmg-root/Beatwarrior.app
+          ln -s /Applications dmg-root/Applications
+          hdiutil create -volname Beatwarrior -srcfolder dmg-root -ov -format UDZO "$bundle/dmg/Beatwarrior_1.10.1_universal.dmg"
       - name: Verify Mac package and native startup
         working-directory: ${{ runner.temp }}/source/Beatwarrior-source
         run: |
           set -euo pipefail
           app='target/universal-apple-darwin/release/bundle/macos/Beatwarrior.app'
           binary="$app/Contents/MacOS/rbxport"
-          lipo -verify_arch arm64 x86_64 "$binary"
+          lipo "$binary" -verify_arch arm64 x86_64
           codesign --verify --deep --strict --verbose=2 "$app"
           test "$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$app/Contents/Info.plist")" = '1.10.1'
+          test "$(/usr/libexec/PlistBuddy -c 'Print LSMinimumSystemVersion' "$app/Contents/Info.plist")" = '13.0'
           mkdir -p "$RUNNER_TEMP/native-smoke" out
           RBXPORT_OPTIONS="$RUNNER_TEMP/native-smoke/options.json" "$binary" > out/native-startup.log 2>&1 &
           app_pid=$!
