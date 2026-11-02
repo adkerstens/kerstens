@@ -11,11 +11,12 @@ jobs:
       RBXPORT_TEST: '1'
       APPLE_SIGNING_IDENTITY: '-'
       CI: 'true'
+      CARGO_PROFILE_RELEASE_LTO: thin
     steps:
       - uses: actions/checkout@v4
       - name: Extract verified Beatwarrior source
         run: |
-          echo 'a24c7a234de1d1edecdf44ce5df7bf4b1a76e7ad30f9e592c8c821f31b1321da  beatwarrior/downloads/Beatwarrior-Broncode-1.10.1.zip' | shasum -a 256 -c -
+          echo '7bcc7ba5078a644f8badcba345cf5ca1a5142de0812c6f3d4b389981c609c56a  beatwarrior/downloads/Beatwarrior-Broncode-1.10.1.zip' | shasum -a 256 -c -
           unzip -q beatwarrior/downloads/Beatwarrior-Broncode-1.10.1.zip -d "$RUNNER_TEMP/source"
           cp beatwarrior/build-macos/tauri.macos.conf.json "$RUNNER_TEMP/source/Beatwarrior-source/src-tauri/"
           cp beatwarrior/build-macos/Build-Beatwarrior-macOS.sh "$RUNNER_TEMP/source/Beatwarrior-source/"
@@ -33,6 +34,7 @@ jobs:
         with:
           workspaces: ${{ runner.temp }}/source/Beatwarrior-source
           key: beatwarrior-macos-universal
+          cache-on-failure: true
       - name: Build universal Mac app and installer
         working-directory: ${{ runner.temp }}/source/Beatwarrior-source
         run: bash Build-Beatwarrior-macOS.sh
@@ -57,9 +59,31 @@ jobs:
           lipo -archs "$binary" > out/architectures.txt
           codesign -dv "$app" 2> out/codesign.txt
           ditto -c -k --sequesterRsrc --keepParent "$app" out/Beatwarrior-1.10.1-universal.app.zip
+      - name: Native cue analysis and cue persistence tests
+        working-directory: ${{ runner.temp }}/source/Beatwarrior-source
+        run: |
+          set -euo pipefail
+          cargo test --release --target aarch64-apple-darwin -p rbl-cueit 2>&1 | tee out/native-cue-tests.log
+          cargo test --release --target aarch64-apple-darwin -p rbl-db --test cue_clear --test beatwarrior_batch 2>&1 | tee out/native-cue-persistence-tests.log
       - uses: actions/upload-artifact@v4
         with:
           name: Beatwarrior-macOS-1.10.1
           path: ${{ runner.temp }}/source/Beatwarrior-source/out/
           if-no-files-found: error
           retention-days: 30
+      - name: Preserve a compiled app if packaging needs repair
+        if: failure()
+        working-directory: ${{ runner.temp }}/source/Beatwarrior-source
+        run: |
+          mkdir -p recovery
+          app='target/universal-apple-darwin/release/bundle/macos/Beatwarrior.app'
+          if [ -d "$app" ]; then
+            ditto -c -k --sequesterRsrc --keepParent "$app" recovery/compiled-app.zip
+          fi
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: Beatwarrior-macOS-recovery
+          path: ${{ runner.temp }}/source/Beatwarrior-source/recovery/
+          if-no-files-found: ignore
+          retention-days: 7
