@@ -2,14 +2,62 @@
   "headers": [
     {
       "source": "/beatwarrior/:path*",
-      "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     },
     {
       "source": "/beatwarrior/downloads/Beatwarrior-Setup-1.10.0.exe",
       "headers": [
-        {"key": "Content-Type", "value": "application/octet-stream"},
-        {"key": "Content-Disposition", "value": "attachment; filename=\"Beatwarrior-Setup-1.10.0.exe\""},
-        {"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Beatwarrior-Setup-1.10.0.exe\""
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/beatwarrior/downloads/Beatwarrior-Setup-1.10.1.exe",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Beatwarrior-Setup-1.10.1.exe\""
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/beatwarrior/downloads/Beatwarrior-1.10.1-universal.dmg",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-apple-diskimage"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Beatwarrior-1.10.1-universal.dmg\""
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
