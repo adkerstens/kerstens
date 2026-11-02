@@ -15,8 +15,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Extract verified Beatwarrior source
         run: |
-          echo 'd97ff0466c8c169d52cea502d0a3f06fd0f0b8bb86bf9b4ae38509fa27e4d6ae  beatwarrior/downloads/Beatwarrior-Broncode-1.10.0.zip' | shasum -a 256 -c -
-          unzip -q beatwarrior/downloads/Beatwarrior-Broncode-1.10.0.zip -d "$RUNNER_TEMP/source"
+          echo 'f8454c398e75a46df797dabb35b692aa1122f1b4b3c6713c82365807bd6ae589  beatwarrior/downloads/Beatwarrior-Broncode-1.10.1.zip' | shasum -a 256 -c -
+          unzip -q beatwarrior/downloads/Beatwarrior-Broncode-1.10.1.zip -d "$RUNNER_TEMP/source"
           cp beatwarrior/build-macos/tauri.macos.conf.json "$RUNNER_TEMP/source/Beatwarrior-source/src-tauri/"
           cp beatwarrior/build-macos/Build-Beatwarrior-macOS.sh "$RUNNER_TEMP/source/Beatwarrior-source/"
       - uses: actions/setup-node@v4
@@ -44,22 +44,22 @@ jobs:
           binary="$app/Contents/MacOS/rbxport"
           lipo -verify_arch arm64 x86_64 "$binary"
           codesign --verify --deep --strict --verbose=2 "$app"
-          test "$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$app/Contents/Info.plist")" = '1.10.0'
+          test "$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$app/Contents/Info.plist")" = '1.10.1'
           mkdir -p "$RUNNER_TEMP/native-smoke" out
           RBXPORT_OPTIONS="$RUNNER_TEMP/native-smoke/options.json" "$binary" > out/native-startup.log 2>&1 &
           app_pid=$!
           trap 'kill "$app_pid" 2>/dev/null || true' EXIT
           sleep 15
           kill -0 "$app_pid"
-          cp target/universal-apple-darwin/release/bundle/dmg/*.dmg out/Beatwarrior-1.10.0-universal.dmg
-          hdiutil verify out/Beatwarrior-1.10.0-universal.dmg
-          shasum -a 256 out/Beatwarrior-1.10.0-universal.dmg > out/SHA256SUMS.txt
+          cp target/universal-apple-darwin/release/bundle/dmg/*.dmg out/Beatwarrior-1.10.1-universal.dmg
+          hdiutil verify out/Beatwarrior-1.10.1-universal.dmg
+          shasum -a 256 out/Beatwarrior-1.10.1-universal.dmg > out/SHA256SUMS.txt
           lipo -archs "$binary" > out/architectures.txt
           codesign -dv "$app" 2> out/codesign.txt
-          ditto -c -k --sequesterRsrc --keepParent "$app" out/Beatwarrior-1.10.0-universal.app.zip
+          ditto -c -k --sequesterRsrc --keepParent "$app" out/Beatwarrior-1.10.1-universal.app.zip
       - uses: actions/upload-artifact@v4
         with:
-          name: Beatwarrior-macOS-1.10.0
+          name: Beatwarrior-macOS-1.10.1
           path: ${{ runner.temp }}/source/Beatwarrior-source/out/
           if-no-files-found: error
           retention-days: 30
